@@ -27,6 +27,21 @@ patterns: [{
 		}, include: "#shared"]
 	}, include: "#shared"]
 },{
+	name: "meta.expression.comment.kicad"
+	begin: "(\\()\\s*(comment)(?=\\s|$|\\()"
+	end:   "\\)"
+	beginCaptures:
+		1: name: "punctuation.section.expression.begin.kicad"
+		2: name: "entity.name.function.comment.kicad"
+	endCaptures:
+		0: name: "punctuation.section.expression.end.kicad"
+	contentName: "comment.block.expression.kicad"
+	patterns: [{
+		begin: '"'
+		end:   '"'
+		patterns: [include: "#stringInnards"]
+	}]
+},{
 	name: "meta.expression.kicad"
 	begin: "\\("
 	end:   "\\)"
@@ -88,16 +103,7 @@ repository:
 				end:   '"'
 				beginCaptures: 0: name: "punctuation.definition.string.begin.kicad"
 				endCaptures:   0: name: "punctuation.definition.string.end.kicad"
-				patterns: [
-					{
-						name: "constant.character.escape.kicad"
-						match: "\\\\\\S"
-					}
-					{
-						name: "invalid.illegal.unclosed.string.kicad"
-						match: '\\G(?:[^"\\\\]|\\\\.)+$'
-					}
-				]
+				patterns: [include: "#stringInnards"]
 			}
 			{
 				name: "meta.embedded.source.kicad"
@@ -110,5 +116,18 @@ repository:
 			{
 				name: "variable.parameter.identifier.kicad"
 				match: "[^\\s\\(\\)]+"
+			}
+		]
+
+
+	stringInnards:
+		patterns: [
+			{
+				name: "constant.character.escape.kicad"
+				match: "\\\\\\S"
+			}
+			{
+				name: "invalid.illegal.unclosed.string.kicad"
+				match: '\\G(?:[^"\\\\]|\\\\.)+$'
 			}
 		]

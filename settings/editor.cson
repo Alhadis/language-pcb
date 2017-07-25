@@ -1,0 +1,4 @@
+".source.kicad":
+	editor:
+		commentStart: "(comment "
+		commentEnd:   ")"
