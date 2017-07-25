@@ -1,4 +1,8 @@
-".source.kicad":
+".source.pcb.sexp":
 	editor:
 		commentStart: "(comment "
 		commentEnd:   ")"
+
+".source.pcb.board":
+	editor:
+		commentStart: "# "
