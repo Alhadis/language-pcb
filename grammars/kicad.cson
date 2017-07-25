@@ -1,6 +1,6 @@
 name: "KiCad"
 scopeName: "source.kicad"
-fileTypes: ["kicad_mod", "kicad_pcb", "kicad_wks", "fp-lib-table"]
+fileTypes: ["kicad_mod", "kicad_pcb", "kicad_wks", "fp-lib-table", "dsn"]
 firstLineMatch: "^\\s*\\((?:kicad_pcb|fp_lib_table)\\s+"
 patterns: [{
 	name: "meta.expression.layers.kicad"
@@ -38,7 +38,7 @@ patterns: [{
 	contentName: "comment.block.expression.kicad"
 	patterns: [{
 		begin: '"'
-		end:   '"'
+		end:   '"|^|$'
 		patterns: [include: "#stringInnards"]
 	}]
 },{
@@ -52,6 +52,12 @@ patterns: [{
 			match: "\\G\\s*(kicad_pcb|module|page_layout|fp_lib_table)(?=\\s|$|\\()"
 			captures:
 				1: name: "storage.type.class.kicad"
+		}
+		{
+			match: '\\G\\s*(string_quote)\\s+(")(?=\\))'
+			captures:
+				1: name: "entity.name.function.kicad"
+				2: name: "constant.character.quote.kicad"
 		}
 		{
 			match: "\\G\\s*(-?(?:(?!\\s)[\\0-\\x7F])+)"
@@ -100,7 +106,7 @@ repository:
 			{
 				name: "string.quoted.double.kicad"
 				begin: '"'
-				end:   '"'
+				end:   '"|^|$'
 				beginCaptures: 0: name: "punctuation.definition.string.begin.kicad"
 				endCaptures:   0: name: "punctuation.definition.string.end.kicad"
 				patterns: [include: "#stringInnards"]
@@ -128,6 +134,6 @@ repository:
 			}
 			{
 				name: "invalid.illegal.unclosed.string.kicad"
-				match: '\\G(?:[^"\\\\]|\\\\.)+$'
+				match: '\\G(?:[^"\\\\]|\\\\.)+(?=$)'
 			}
 		]
