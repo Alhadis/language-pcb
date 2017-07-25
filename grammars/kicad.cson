@@ -21,7 +21,7 @@ patterns: [{
 		endCaptures:
 			0: name: "punctuation.section.expression.end.kicad"
 		patterns: [{
-			match: "\\G\\s*(-?(?:(?!\\s)[\\0-\\x7F])+)"
+			match: "\\G\\s*(-?(?:(?![\\s\\(\\)])[\\0-\\x7F])+)"
 			captures:
 				1: name: "entity.name.function.kicad"
 		}, include: "#shared"]
@@ -60,7 +60,7 @@ patterns: [{
 				2: name: "constant.character.quote.kicad"
 		}
 		{
-			match: "\\G\\s*(-?(?:(?!\\s)[\\0-\\x7F])+)"
+			match: "\\G\\s*(-?(?:(?![\\s\\(\\)])[\\0-\\x7F])+)"
 			captures:
 				1: name: "entity.name.function.kicad"
 		}
