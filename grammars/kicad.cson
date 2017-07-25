@@ -100,6 +100,14 @@ repository:
 				]
 			}
 			{
+				name: "meta.embedded.source.kicad"
+				match: "(\\${)([^\\s}\\(\\)]+)(})"
+				captures:
+					1: name: "punctuation.section.embedded.bracket.curly.begin.kicad"
+					2: name: "string.interpolated.embedded.kicad"
+					3: name: "punctuation.section.embedded.bracket.curly.end.kicad"
+			}
+			{
 				name: "variable.parameter.identifier.kicad"
 				match: "[^\\s\\(\\)]+"
 			}
