@@ -3,6 +3,7 @@
 		commentStart: "(comment "
 		commentEnd:   ")"
 
-".source.pcb.board":
+".source.pcb.board,
+ .source.pcb.schematic":
 	editor:
 		commentStart: "# "
