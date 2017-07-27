@@ -1,6 +1,6 @@
 name: "Gerber Image"
 scopeName: "source.gerber"
-fileTypes: ["gbr", "gtl", "gbl", "gbs", "gto", "gts", "gtp", "gbo", "gbp", "drl"]
+fileTypes: ["gbr", "gtl", "gbl", "gbs", "gto", "gts", "gtp", "gbo", "gbp"]
 patterns: [{
 	# Comment
 	contentName: "comment.block.gerber"
