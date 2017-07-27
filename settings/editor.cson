@@ -7,3 +7,8 @@
  .source.pcb.schematic":
 	editor:
 		commentStart: "# "
+
+".source.gerber":
+	editor:
+		commentStart: "G04 "
+		commentEnd:   "*"
