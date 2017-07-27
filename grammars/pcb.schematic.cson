@@ -3,6 +3,12 @@ scopeName: "source.pcb.schematic"
 fileTypes: ["sch"]
 firstLineMatch: "^\\s*EESchema\\s+(?:Schematic|-LIBRARY)\\s"
 patterns: [{
+	# Eagle .sch file, different format to KiCad's
+	begin: '\\A(?=<\\?xml\\s+version="[\\d.]+"\\s)'
+	end:   "(?=A)B"
+	patterns: [include: "text.xml"]
+	contentName: "source.eagle.pcb.board"
+},{
 	name: "meta.header.pcb.schematic"
 	begin: "^\\s*(EESchema\\s+(?:Schematic|-LIBRARY)\\s+\\S+.*)\\s*$"
 	end:   "(?<=\\$EndDescr)(?=\\s|$)"
