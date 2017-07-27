@@ -81,6 +81,24 @@ repository:
 				}, include: "$self"]
 			}, include: "$self"]
 		},{
+			# Attribute definitions
+			name: "meta.attribute.gerber"
+			begin: "\\G(TF|TA|TO)([^,*%]+)(,)"
+			end:   "(?=\\*|%)"
+			beginCaptures:
+				1: name: "storage.type.attribute.gerber"
+				2: name: "entity.other.attribute-name.gerber"
+			patterns: [
+				{match: ",",      name: "punctuation.separator.list.comma.gerber"}
+				{match: "[^,%*]", name: "string.unquoted.attribute.gerber"}
+			]
+		},{
+			# Delete attribute
+			match: "\\G(TD)([^,*%]+)"
+			captures:
+				1: name: "entity.name.function.delete.attribute.gerber"
+				2: name: "entity.other.attribute-name.gerber"
+		},{
 			# Format string
 			match: "\\G(FS)([LT][AI])"
 			captures:
