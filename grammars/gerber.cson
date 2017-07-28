@@ -1,6 +1,22 @@
 name: "Gerber Image"
 scopeName: "source.gerber"
-fileTypes: ["gbr", "gtl", "gbl", "gbs", "gto", "gts", "gtp", "gbo", "gbp"]
+fileTypes: [
+	"gbr"  # Primary extension
+	"gtl"  # Top layer
+	"gbl"  # Bottom layer
+	"gbs"  # Bottom solder resist
+	"gto"  # Top overlay
+	"gts"  # Top solder resist
+	"gtp"  # Top paste
+	"gbo"  # Bottom overlay
+	"gbp"  # Bottom paste
+	"gko"  # Keep-out layer
+	"gpt"  # Top pad master
+	"gpb"  # Bottom pad master
+	"fab"  # Fabrication data
+	"pho"  # Photoplot file
+]
+firstLineMatch: "^G04 start .+\\*\\r?\\n"
 patterns: [{
 	# Comment
 	contentName: "comment.block.gerber"
