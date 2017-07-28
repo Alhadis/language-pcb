@@ -11,12 +11,13 @@ fileTypes: [
 	"gbo"  # Bottom overlay
 	"gbp"  # Bottom paste
 	"gko"  # Keep-out layer
+	"gm1"  # Mechanical layer
 	"gpt"  # Top pad master
 	"gpb"  # Bottom pad master
 	"fab"  # Fabrication data
 	"pho"  # Photoplot file
 ]
-firstLineMatch: "^G04 start .+\\*\\r?\\n"
+firstLineMatch: "^G04 .*\\r?\\n"
 patterns: [{
 	# Comment
 	contentName: "comment.block.gerber"
