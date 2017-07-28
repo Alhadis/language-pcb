@@ -9,6 +9,12 @@ patterns: [{
 	patterns: [include: "text.xml"]
 	contentName: "source.eagle.pcb.board"
 },{
+	# First character is a semicolon or bracket; probably Scheme
+	begin: "\\A\\s*(?=;|\\()"
+	end:   "(?=A)B"
+	patterns: [include: "source.scheme"]
+	contentName: "source.scheme"
+},{
 	name: "meta.header.pcb.schematic"
 	begin: "^\\s*(EESchema\\s+(?:Schematic|-LIBRARY)\\s+\\S+.*)\\s*$"
 	end:   "(?<=\\$EndDescr)(?=\\s|$)"
