@@ -1,6 +1,6 @@
 name: "KiCad PCB (S-expressions)"
 scopeName: "source.pcb.sexp"
-fileTypes: ["kicad_mod", "kicad_pcb", "kicad_wks", "fp-lib-table", "dsn"]
+fileTypes: ["kicad_mod", "kicad_pcb", "kicad_wks", "fp-lib-table", "dsn", "net"]
 firstLineMatch: "^\\s*\\((?:kicad_pcb|fp_lib_table)\\s+"
 limitLineLength: no
 patterns: [{
