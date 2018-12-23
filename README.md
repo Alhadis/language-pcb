@@ -11,6 +11,7 @@ Currently included:
 * [KiCad PCB Boards][3]
 * [KiCad PCB Schematics][3]
 * [KiCad PCB Layouts][3]
+* [LTSpice Symbols][8]
 
 Stuff that could be included:
 
@@ -42,3 +43,4 @@ Flags("nameonpcb,uniquename,clearnew,snappin")
 [5]: http://www.artwork.com/gerber/drl2laser/excellon/index.htm
 [6]: http://www.johnjohnson.info/wp-content/uploads/2013/05/pcbgcode.pdf
 [7]: http://pcb.geda-project.org/
+[8]: http://www.zen22142.zen.co.uk/ltspice/newsymbols.htm

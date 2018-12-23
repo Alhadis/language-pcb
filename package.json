@@ -2,7 +2,7 @@
 	"name": "language-pcb",
 	"version": "1.0.1",
 	"description": "Syntax highlighting for various PCB (Printed Circuit Board) formats.",
-	"keywords": ["KiCad", "circuitry", "circuitboard", "CAD", "Gerber", "RS-274X"],
+	"keywords": ["KiCad", "circuitry", "circuitboard", "CAD", "Gerber", "RS-274X", "LTSpice"],
 	"repository": "https://github.com/Alhadis/language-pcb",
 	"author": "Alhadis <gardnerjohng@gmail.com>",
 	"license": "ISC",
