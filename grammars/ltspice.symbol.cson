@@ -1,0 +1,183 @@
+name: "LTspice Symbol"
+scopeName: "source.ltspice.symbol"
+fileTypes: ["asy"]
+firstLineMatch: "^Version [0-9]$"
+patterns: [include: "#main"]
+
+repository:
+	main:
+		patterns: [
+			{include: "#version"}
+			{include: "#symbolType"}
+			{include: "#shapes"}
+			{include: "#window"}
+			{include: "#pinAttr"}
+			{include: "#pin"}
+			{include: "#attr"}
+			{include: "#text"}
+		]
+	
+	
+	# "SYMATTR" field
+	attr:
+		name:  "meta.attribute.ltspice.symbol"
+		begin: "^\\s*(SYMATTR)(?=\\s|$)"
+		end:   "$"
+		beginCaptures:
+			1: name: "storage.type.var.attribute.ltspice.symbol"
+		patterns: [{
+			# Initial argument: Attribute's name
+			match: "\\G\\s+(\\S+)"
+			captures:
+				1: name:  "entity.attribute.name.ltspice.symbol"
+		},{
+			# Remainder of line
+			name: "string.unquoted.attribute.value.ltspice.symbol"
+			match: ".+"
+		}]
+	
+	
+	# Numeric literals
+	number:
+		patterns: [{
+			# Floating point
+			name:  "constant.numeric.float.real.decimal.ltspice.symbol"
+			match: "[-+]?[0-9]+\\.[0-9]+"
+		},{
+			# Integers
+			name:  "constant.numeric.integer.int.decimal.ltspice.symbol"
+			match: "[-+]?[0-9]+"
+		}]
+	
+	
+	# Pins
+	pin:
+		name:  "meta.pin.ltspice.symbol"
+		begin: "^\\s*(PIN)(?=\\s|$)"
+		end:   "$"
+		beginCaptures:
+			1: name: "keyword.control.pin.ltspice.symbol"
+		patterns: [
+			{include: "#number"}
+			
+			name: "constant.language.pin-alignment.ltspice.symbol"
+			match: "\\w+"
+		]
+	
+	
+	# Pin attribute
+	pinAttr:
+		name:  "meta.pin.attribute.ltspice.symbol"
+		begin: "^\\s*(PINATTR)(?=\\s|$)"
+		end:   "$"
+		beginCaptures:
+			1: name: "storage.type.var.attribute.ltspice.symbol"
+		patterns: [{
+			# Attributes with numeric values
+			match: "\\G\\s+(SpiceOrder)\\s+(\\d+)"
+			captures:
+				1: name: "entity.pin.attribute.name.ltspice.symbol"
+				2: patterns: [include: "#number"]
+			patterns: [include: "#number"]
+		},{
+			# Attribute's name
+			match: "\\G\\s+(\\S+)"
+			captures:
+				1: name:  "entity.attribute.name.ltspice.symbol"
+		},{
+			# Bracketed vector-looking thing
+			match: "(\\[)([^\\]]+)(\\])"
+			captures:
+				1: name: "punctuation.definition.brace.square.bracket.begin.ltspice.symbol"
+				3: name: "punctuation.definition.brace.square.bracket.begin.ltspice.symbol"
+				2: patterns: [{
+					name: "punctuation.delimiter.separator.colon.key-value.ltspice.symbol"
+					match: ":"
+				}, include: "#number"]
+		},{
+			# Remainder of line
+			name: "string.unquoted.attribute.value.ltspice.symbol"
+			match: "[^\\s\\[]+"
+		}]
+
+
+	# Drawing primitives
+	shapes:
+		name: "meta.shape.${1:/downcase}.ltspice.symbol"
+		begin: "^\\s*(ARC|LINE|CIRCLE|RECTANGLE)(?=\\s|$)"
+		end:   "$"
+		beginCaptures:
+			1: name: "storage.type.var.shape.ltspice.symbol"
+		patterns: [{
+			name:  "variable.parameter.type.ltspice.symbol"
+			match: "\\G\\s*(?!\\d)(\\w+)"
+		}, include: "#number"]
+
+
+	# Header line: "SymbolType BLOCK"
+	symbolType:
+		name:  "meta.symbol-type.ltspice.symbol"
+		begin: "^\\s*(SymbolType)(?=\\s|$)"
+		end:   "$"
+		patterns: [{
+			name:  "constant.language.symbol-type.ltspice.symbol"
+			match: "[A-Za-z_$]+"
+		}]
+		beginCaptures:
+			1: name: "keyword.control.symbol-type.ltspice.symbol"
+
+
+	# Annotation
+	text:
+		name: "meta.text.ltspice.symbol"
+		begin: "^\\s*(TEXT)(?=\\s|$)"
+		end:   "$"
+		beginCaptures:
+			1: name: "storage.type.var.text.ltspice.symbol"
+		patterns: [{
+			# First 4 parameters
+			name:  "meta.function-call.arguments.ltspice.symbol"
+			match: """(?x) \\G
+				\\s+ ([-\\d.]+) # X
+				\\s+ ([-\\d.]+) # Y
+				\\s+ ([-\\w$]+) # Alignment
+				\\s+ ([-\\d.]+) # Text-size
+			"""
+			captures:
+				1: name: "meta.vector.x-axis.ltspice.symbol", patterns: [include: "#number"]
+				2: name: "meta.vector.y-axis.ltspice.symbol", patterns: [include: "#number"]
+				3: name: "constant.language.text-alignment.ltspice.symbol"
+				4: name: "meta.text-size.ltspice.symbol", patterns: [include: "#number"]
+		},{
+			# Remainder of line is text's contents
+			name:  "string.unquoted.text.ltspice.symbol"
+			match: ".+"
+		}]
+	
+	
+	# Header line: "Version 4"
+	version:
+		name:  "meta.version.ltspice.symbol"
+		begin: "^\\s*(Version)(?=\\s|$)"
+		end:   "$"
+		patterns: [include: "#number"]
+		beginCaptures:
+			1: name: "keyword.control.file-version.ltspice.symbol"
+	
+
+	# "Window" field
+	window:
+		name:  "meta.window.ltspice.symbol"
+		begin: "^\\s*(WINDOW)(?=\\s|$)"
+		end:   "$"
+		beginCaptures:
+			1: name: "keyword.control.window.ltspice.symbol"
+		patterns: [{
+			name:  "meta.function-call.arguments.ltspice.symbol"
+			match: "\\G((?:\\s+[-\\d.]+){3})\\s+(\\w+)\\s+([-\\d.]+)"
+			captures:
+				1: patterns: [include: "#number"]
+				2: name: "constant.language.window-alignment.ltspice.symbol"
+				3: patterns: [include: "#number"]
+		}]
+	
