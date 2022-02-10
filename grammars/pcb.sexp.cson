@@ -50,7 +50,7 @@ patterns: [{
 	endCaptures:   0: name: "punctuation.section.expression.end.pcb.sexp"
 	patterns: [
 		{
-			match: "\\G\\s*(kicad_pcb|module|page_layout|fp_lib_table)(?=\\s|$|\\()"
+			match: "\\G\\s*(kicad_pcb|kicad_sch|module|page_layout|fp_lib_table)(?=\\s|$|\\()"
 			captures:
 				1: name: "storage.type.class.pcb.sexp"
 		}

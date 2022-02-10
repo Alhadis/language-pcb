@@ -1,6 +1,6 @@
 name: "KiCad Schematic"
 scopeName: "source.pcb.schematic"
-fileTypes: ["sch"]
+fileTypes: ["kicad_sch", "sch"]
 firstLineMatch: "^\\s*EESchema\\s+(?:Schematic|-LIBRARY)\\s"
 patterns: [{
 	# Eagle .sch file, different format to KiCad's
@@ -8,6 +8,12 @@ patterns: [{
 	end:   "(?=A)B"
 	patterns: [include: "text.xml"]
 	contentName: "source.eagle.pcb.board"
+},{
+	# KiCad v6+ schematic format based on S-expressions
+	begin: "\\A\\s*(?=\\(kicad_sch(?:\\s|$|\\())"
+	end:   "(?=A)B"
+	patterns: [include: "source.pcb.sexp"]
+	contentName: "source.pcb.sexp"
 },{
 	# First character is a semicolon or bracket; probably Scheme
 	begin: "\\A\\s*(?=;|\\()"
