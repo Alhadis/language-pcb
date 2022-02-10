@@ -190,7 +190,7 @@ repository:
 		end:   '"|^|$'
 		beginCaptures: 0: name: "punctuation.definition.string.begin.pcb.schematic"
 		endCaptures:   0: name: "punctuation.definition.string.end.pcb.schematic"
-		patterns: [include: "#stringInnards"]
+		patterns: [include: "source.pcb.sexp#stringInnards"]
 
 	tilde:
 		name: "keyword.operator.pcb.schematic"
