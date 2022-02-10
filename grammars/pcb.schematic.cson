@@ -1,7 +1,7 @@
 name: "KiCad Schematic"
 scopeName: "source.pcb.schematic"
 fileTypes: ["kicad_sch", "sch"]
-firstLineMatch: "^\\s*EESchema\\s+(?:Schematic|-LIBRARY)\\s"
+firstLineMatch: "^\\s*EESchema(?:\\s+Schematic|-LIBRARY)\\s"
 patterns: [{
 	# Eagle .sch file, different format to KiCad's
 	begin: '\\A(?=<\\?xml\\s+version="[\\d.]+"\\s)'
@@ -22,7 +22,7 @@ patterns: [{
 	contentName: "source.scheme"
 },{
 	name: "meta.header.pcb.schematic"
-	begin: "^\\s*(EESchema\\s+(?:Schematic|-LIBRARY)\\s+\\S+.*)\\s*$"
+	begin: "^\\s*(EESchema(?:\\s+Schematic|-LIBRARY)\\s+\\S+.*)\\s*$"
 	end:   "(?<=\\$EndDescr)(?=\\s|$)"
 	beginCaptures:
 		1: name: "keyword.control.header.pcb.schematic"
