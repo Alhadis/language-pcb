@@ -146,7 +146,6 @@ repository:
 	shared:
 		patterns: [
 			{include: "#comments"}
-			{include: "#capsConstant"}
 			{include: "#tilde"}
 			{include: "#quotedString"}
 			{include: "#numbers"}
